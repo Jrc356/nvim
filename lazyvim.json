@@ -1,6 +1,8 @@
 {
   "extras": [
     "lazyvim.plugins.extras.coding.mini-surround",
+    "lazyvim.plugins.extras.dap.core",
+    "lazyvim.plugins.extras.dap.nlua",
     "lazyvim.plugins.extras.editor.refactoring",
     "lazyvim.plugins.extras.formatting.prettier",
     "lazyvim.plugins.extras.lang.docker",
@@ -13,7 +15,8 @@
     "lazyvim.plugins.extras.lang.terraform",
     "lazyvim.plugins.extras.lang.typescript",
     "lazyvim.plugins.extras.lang.yaml",
-    "lazyvim.plugins.extras.lsp.neoconf"
+    "lazyvim.plugins.extras.lsp.neoconf",
+    "lazyvim.plugins.extras.test.core"
   ],
   "news": {
     "NEWS.md": "6520"
