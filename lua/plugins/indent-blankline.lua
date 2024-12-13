@@ -16,21 +16,36 @@ local function get_highlight_names()
   return keyset
 end
 
--- Customize the "ibl" plugin that is already packaged with LazyVim with rainbow colors!
 return {
   "lukas-reineke/indent-blankline.nvim",
   opts = { indent = { highlight = get_highlight_names() } },
   config = function(plugin, opts)
     local hooks = require("ibl.hooks")
-    -- create the highlight groups in the highlight setup hook, so they are reset
-    -- every time the colorscheme changes
     hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
       for _, highlight in pairs(HIGHLIGHTS) do
         vim.api.nvim_set_hl(0, highlight.highlight, { fg = highlight.color })
       end
     end)
+    vim.g.rainbow_delimiters = { highlight = get_highlight_names() }
 
     -- `plugin.main` is "ibl"
     require(plugin.main).setup(opts)
+    require("ibl").setup({
+      indent = {
+        char = "▏",
+        highlight = get_highlight_names(),
+      },
+      scope = {
+        show_start = false,
+        show_end = false,
+      },
+    })
+
+    -- sync rainbow-delimiters with indent-blankline colors
+    hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
+
+    -- hide first tab/space marks
+    hooks.register(hooks.type.WHITESPACE, hooks.builtin.hide_first_space_indent_level)
+    hooks.register(hooks.type.WHITESPACE, hooks.builtin.hide_first_tab_indent_level)
   end,
 }
