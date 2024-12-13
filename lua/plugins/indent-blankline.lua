@@ -33,6 +33,7 @@ return {
     require("ibl").setup({
       indent = {
         char = "▏",
+        tab_char = "▏",
         highlight = get_highlight_names(),
       },
       scope = {
