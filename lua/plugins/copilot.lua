@@ -1,7 +1,12 @@
 return {
   "zbirenbaum/copilot.lua",
   cmd = "Copilot",
-  opts = function()
-    require("copilot.api").status = require("copilot.status")
-  end,
+  opts = {
+    copilot_model = "gpt-4o-copilot",
+    filetypes = {
+      markdown = true,
+      help = true,
+      yaml = true,
+    },
+  },
 }
